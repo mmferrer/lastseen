@@ -14,14 +14,14 @@ Tasks:
 
 3. Clyde
 	- Homepage
-		- Connecting everything together
+		 - Connecting everything together
 
 Note:
 	- admin.py has not been setup (DO THIS FIRST - EXCEPT FOR HOMEPAGE)
 	- urls.py has not been setup
 	- focus on functionality and use basic html forms - design comes after everything
 	  has been completed
-	- template folders has not been set (Clyde, please figure this one out)
+	- template folders has not been set (Clyde, please figure this one out) 
 
 HOW TO MAKE THE DATABASE WORK:
 	- delete the database file
