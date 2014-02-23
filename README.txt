@@ -14,7 +14,9 @@ Tasks:
 
 3. Clyde
 	- Homepage
-		 - Connecting everything together
+		- Connecting everything together
+		- try
+
 
 Note:
 	- admin.py has not been setup (DO THIS FIRST - EXCEPT FOR HOMEPAGE)
