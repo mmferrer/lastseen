@@ -1,0 +1,83 @@
+<form id="signup" method="post" action="" name='signupform'>
+{% csrf_token %}
+Sign up
+<div>
+{{register_form.username.errors}}
+<label>Username:</label>
+{{register_form.username}}
+</div>
+<div>
+{{register_form.first_name.errors}}
+<label>First Name:</label>
+{{register_form.first_name}}
+</div>
+<div>
+{{register_form.last_name.errors}}
+<label>Last Name:</label>
+{{register_form.last_name}}
+</div>
+<div>
+{{register_form.email1.errors}}
+<label>Email:</label>
+{{register_form.email1}}
+</div>
+<div>
+{{register_form.email2.errors}}
+<label>Confirm Email:</label>
+{{register_form.email2}}
+</div>
+<div>
+{{register_form.password.errors}}
+<label>Password:</label>
+{{register_form.password}}
+</div>
+<div>
+{{register_form.password2.errors}}
+<label>Confirm Passowrd:</label>
+{{register_form.password2}}
+</div>
+<div>
+<label>Gender</label>
+<div id="gender" name="gender" class="btn-group" data-toggle="buttons-radio">
+{% for radio in register_form.gender %}
+<button type="button" class="btn btn-info {%if radio.choice_label == 'Male' %}active{%endif%}" name="gender" id='{{ radio.choice_label }}' >
+{{ radio.choice_label }}
+{{ radio.tag }}
+</button>
+{% endfor %}
+</div>
+
+  <script type='text/javascript'>
+                    $('#Male').click(function(){
+                        $('input:radio[name=gender]')[0].checked = true;   
+                        
+                    });
+
+                    $('#Female').click(function(){                    
+                        $('input:radio[name=gender]')[1].checked = true;                    
+                    });
+                </script>
+
+<div>
+{{register_form.birthday.errors}}
+<label>Birthday:</label>
+{{register_form.birthday}}
+</div>
+<div>
+{{register_form.address.errors}}
+<label>Address:</label>
+{{register_form.address}}
+</div>
+<div>
+{{register_form.facebook.errors}}
+<label>Facebook:</label>
+{{register_form.facebook}}
+</div>
+<div>
+{{register_form.twitter.errors}}
+<label>Twitter:</label>
+{{register_form.twitter}}
+</div>
+<div>
+<input type="submit" class="btn btn-success" value="Create Account"/>
+
