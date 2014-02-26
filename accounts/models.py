@@ -13,7 +13,7 @@ class UserAccount(User):
 	twitter=models.CharField(max_length = 20, blank = True)
 	emailcode=models.CharField(max_length = 10)
     # slug = models.SlugField(max_length=100, unique=True, null=True)
-	active =  models.BooleanField()
+	#active =  models.BooleanField()
 
 class Badge(models.Model):
 	user = models.ForeignKey(UserAccount)
