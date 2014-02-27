@@ -8,7 +8,7 @@ urlpatterns = patterns('accounts.views',
 '''
 urlpatterns = patterns('',
 		(r'^signup/$'
-			'mysite.accounts.views.signup',
+			'lastseen.accounts.views.signup',
 			{'template_name':'accounts/signup_form.html'})
 
 		
@@ -16,3 +16,6 @@ urlpatterns = patterns('',
 
 
 		)
+'''
+
+j
