@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from accounts.models import UserAccount
 
@@ -10,6 +11,15 @@ class Submission(models.Model):
 	longitude = models.FloatField()
 	found = models.BooleanField(default=False)
 	details = models.TextField()
+
+	def __str__(self):
+		return ' '.join([
+				self.latitude,
+				self.longitude,
+			])
+
+	def get_absolute_url(self):
+		return reverse('submission-view', kwags={'pk': self.id})
 
 	def __unicode__(self):
 		return self.details

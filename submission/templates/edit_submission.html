@@ -1,0 +1,18 @@
+{% if submission.id %}
+<h1>Edit Submission</h1>
+{% else %}
+<h1>Add Submission</h1>
+{% endif %}
+
+<form action="{{ action }}" method="POST">
+  {% csrf_token %}
+  <ul>
+    {{ form.as_ul }}
+  </ul>
+  <input id="save_submission" type="submit" value="Save" />
+</form>
+
+<a href="{% url "submission-list" %}">back to list</a>
+{% if submission.id %}
+<a href="{% url "submission-delete" pk=submission.id %}">Delete</a>
+{% endif %}

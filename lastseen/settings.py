@@ -25,15 +25,15 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-<<<<<<< HEAD
+# <<<<<<< HEAD
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-=======
+# =======
 SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     os.path.join(SETTINGS_PATH,'template')
     )
->>>>>>> 36f0cd79ad43c4f33931978cb4ae3062c9198619
+# >>>>>>> 36f0cd79ad43c4f33931978cb4ae3062c9198619
 
 # Application definition
 
