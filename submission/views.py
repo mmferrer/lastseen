@@ -4,6 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.core.urlresolvers import reverse
 
 from models import Submission, Comment
+import forms
 
 # Create your views here.
 class SubmissionView(DetailView):
@@ -17,6 +18,7 @@ class ListSubmissionView(ListView):
 class CreateSubmissionView(CreateView):
 	model = Submission,
 	template_name = 'edit_submission.html'
+	form_class = forms.SubmissionForm
 
 	def get_success_url(self):
 		return reverse('submission-list')
@@ -30,6 +32,7 @@ class CreateSubmissionView(CreateView):
 class UpdateSubmissionView(UpdateView):
 	model = Submission
 	template_name = 'edit_submission.html'
+	form_class = forms.SubmissionForm
 
 	def get_success_url(self):
 		return reverse('submission-list')
