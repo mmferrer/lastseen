@@ -1,0 +1,28 @@
+.wrapper{
+   margin: 0px auto;
+   width: 1244px;
+   background-color: #cccccc;
+   padding-top: 20px;
+   padding-left: 50px;
+   padding-right: 50px;
+   padding-bottom: 20px;
+}
+
+.box {
+	width: 500px;
+	height: 200px;
+	border:inset 1px #000000;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-moz-box-shadow: -1px 10px 25px #000000;
+	-webkit-box-shadow: -1px 10px 25px #000000;
+	box-shadow: -1px 10px 25px #000000;
+
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+label {
+	font-size: 20px;
+}

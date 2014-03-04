@@ -1,9 +1,0 @@
-<h1>Delete Submission</h1>
-
-<p>Are you sure you want to delete the submission {{ submission }}?</p>
-
-<form action="{% url "submission-delete" pk=submission.id %}" method="POST">
-	{% csrf_token %}
-	<input type="submit" value="Yes, delete." />
-	<a href="{% url "submission-list" %}">No, cancel.</a>
-</form>

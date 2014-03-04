@@ -6,10 +6,10 @@ from accounts.models import UserAccount
 # Create your models here.
 class Submission(models.Model):
 	user = models.ForeignKey(UserAccount)
-	submission_date = models.DateTimeField('submission date')
+	submission_date = models.DateTimeField(auto_now_add = True, blank = True)
 	latitude = models.FloatField()
 	longitude = models.FloatField()
-	found = models.BooleanField(default=False)
+	found = models.BooleanField(default = False)
 	details = models.TextField()
 
 	def __str__(self):

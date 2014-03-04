@@ -1,0 +1,39 @@
+<style type="text/css"> 
+  html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+  #map-canvas {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 400px;
+      height: 400px;
+  }
+</style>
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3zL-5f5AcamPPOSknl9Ly2nuSSnaGMxA&sensor=true">
+</script>
+<script>
+    function initialize() {
+    	var latLng = new google.maps.LatLng("{{ submission.latitude }}", "{{ submission.longitude }}");
+    	var mapOptions = {
+    		center: latLng,
+    		zoom: 8
+    	};
+    	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    	var marker = new google.maps.Marker({
+    		position: latLng,
+    		map: map
+    	});
+    }
+</script>
+
+<body onload="initialize()">
+	<h1>{{ submission.title }}</h1>
+  <label>Comments: {{ comments.count }}</label>
+  <a href="/submission/{{ submission.id }}/comment/all">View All</a>
+	<div id="map-canvas" />
+</body>

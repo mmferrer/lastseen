@@ -1,0 +1,22 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/submission_list.css">
+
+<div class="wrapper">
+	{% for submission in submissions %}
+		<div class="box">
+			<label>Submission ID: {{ submission.id }}</label>
+			<label>Date Submitted: {{ submission.date }} </label>
+			<label>Time Submitted: {{ submission.time }} </label>
+			<label>Title: {{ submission.title }}</label>
+			<label>Details: {{ submission.details }} </label>
+			<label>Found: {{ submission.found }} </label>
+			<label>Location: {{ submission.latitude }}, {{ submission.longitude }} -- {{ submission.address }}</label>
+			<a href="/submission/{{ submission.id }}">View</a>
+			<a href="/submission/edit/{{ submission.id }}/">Edit</a>
+			<a href="/submission/delete/{{ submission.id }}/">Delete</a><br>
+			<a href="/submission/{{ submission.id }}/comment">Comment</a>
+		</div>	
+	{% endfor %}
+	<a href="/submission/add">Add</a>
+</div>

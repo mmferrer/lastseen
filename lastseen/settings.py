@@ -27,12 +27,12 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 # <<<<<<< HEAD
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+# TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 # =======
 SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
-    os.path.join(SETTINGS_PATH,'template')
-    )
+    os.path.join(SETTINGS_PATH,'templates')
+)
 # >>>>>>> 36f0cd79ad43c4f33931978cb4ae3062c9198619
 
 # Application definition
@@ -44,10 +44,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gmapi',
+    'comments',
     'accounts',
-    'submission',
+    'submissions',
     'homepage'
 )
+
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.ModelBackend',
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,7 +75,7 @@ WSGI_APPLICATION = 'lastseen.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'lastseen.db',
+        'NAME': os.path.join(BASE_DIR, 'lastseen.db'),
         'USER': 'root',
         'PASSWORD': 'root',
     }
@@ -91,14 +97,20 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(SETTINGS_PATH, 'media')
 
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = ''
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
+    os.path.join(SETTINGS_PATH, 'static-files'),
+)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+#     'django.template.loaders.eggs.Loader',
 )

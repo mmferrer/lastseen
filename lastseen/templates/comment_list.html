@@ -1,0 +1,19 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/submission_list.css">
+
+<div class="wrapper">
+	{% for comment in comments %}
+		<div class="box">
+			<label>Comment ID: {{ comment.id }}</label>
+			<label>Date Submitted: {{ comment.date }} </label>
+			<label>Time Submitted: {{ comment.time }} </label>
+			<label>Title: {{ comment.title }}</label>
+			<label>Details: {{ comment.details }} </label>
+			<label>Location: {{ comment.latitude }}, {{ comment.longitude }} -- {{ comment.address }}</label>
+			<a href="/submission/{{ submission.id }}">View</a>
+			<a href="/submission/edit/{{ submission.id }}/">Edit</a>
+			<a href="/submission/delete/{{ submission.id }}/">Delete</a><br>
+		</div>	
+	{% endfor %}
+</div>

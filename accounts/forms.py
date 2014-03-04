@@ -38,6 +38,7 @@ class UserCreationForm(forms.ModelForm):
 
     def clean_password2(self):
         password = self.cleaned_data.get("password", "")
+        password = self.cleaned_data["password"]
         password2 = self.cleaned_data["password2"]
         if password != password2:
             raise forms.ValidationError("The two password fields didn't match.")
@@ -56,3 +57,18 @@ class UserCreationForm(forms.ModelForm):
         if email1 != email2:
             raise forms.ValidationError("The two email fields didn't match.")
         return email2
+
+    def save(self, commit=True, domain_override=None,
+             email_template_name='accounts/signup_email.html',
+             use_https=False, token_generator=default_token_generator):
+        user = super(UserCreationForm, self).save(commit)
+        user.set_password(self.cleaned_data["password"])
+        user.email = self.cleaned_data["email1"]
+        user.active = False
+        if commit:
+            random_code = User.objects.make_random_password(length=10)
+            user.emailcode = random_code
+            user.save()
+            #email = EmailMessage('Email Verification', 'Login to your account and verify it using this code: %s' % random_code, to=[self.cleaned_data["email1"]])
+            #email.send()
+        return user

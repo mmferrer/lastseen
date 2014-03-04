@@ -18,7 +18,8 @@ def signup(request):
         if requestform.is_valid():
             obj = requestform.save()
             context['register_form'] = UserCreationForm()
-           # user = authenticate(username=requestform.cleaned_data['username'], password=requestform.cleaned_data['password'])
+            user = authenticate(username=requestform.cleaned_data['username'], password=requestform.cleaned_data['password'])
+            user_login(request,user)
             #loginaccount(request, user)
             userId = obj.id
             return redirect('/profile/%d' % userId)
@@ -59,7 +60,7 @@ def singleprofile(request, form_id):
 
     return render_to_response('profile.html', context, context_instance=RequestContext(request))
 
-def user_login(request):
+def user_login(request,*args, **kwargs):
     context = RequestContext(request)
     if request.method == 'POST':
         username = request.POST['username']
@@ -81,4 +82,4 @@ from django.contrib.auth import logout
 
 def logout_view(request):
     logout(request)
-    return render_to_response('login.html')
+    return HttpResponse("You've logged out")
