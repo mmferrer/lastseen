@@ -16,9 +16,13 @@ urlpatterns = patterns('',
 	url(r'^submission/', include('submission.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^signup/', signup),
-	url(r'^account/profile$',profile, name= 'profilepage'),
+	url(r'^accounts/profile/$', profile),
 	url(r'^profile/(\d+)/$',singleprofile),
 	url(r'^list/',accountList),
+    url(r'^logout/',logout_view),
+    url(r'^accounts/login/$',
+        user_login, name = 'login'),
+   url(r'^login/$', user_login),
 ) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 # <<<<<<< HEAD

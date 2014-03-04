@@ -36,58 +36,23 @@ class UserCreationForm(forms.ModelForm):
         }
         fields = ("username", "first_name", "last_name","birthday","address", "facebook", "twitter", "gender")
 
-    # def clean_password2(self):
-    #     password = self.cleaned_data.get("password", "")
-    #     password2 = self.cleaned_data["password2"]
-    #     if password != password2:
-    #         raise forms.ValidationError("The two password fields didn't match.")
-    #     return password2
+    def clean_password2(self):
+        password = self.cleaned_data.get("password", "")
+        password2 = self.cleaned_data["password2"]
+        if password != password2:
+            raise forms.ValidationError("The two password fields didn't match.")
+        return password2
     
-    # def clean_email1(self):
-    #     email1 = self.cleaned_data["email1"]
-    #     users_found = User.objects.filter(email__iexact=email1)
-    #     if len(users_found) >= 1:
-    #         raise forms.ValidationError("A user with that email already exist.")
-    #     return email1
+    def clean_email1(self):
+        email1 = self.cleaned_data["email1"]
+        users_found = User.objects.filter(email__iexact=email1)
+        if len(users_found) >= 1:
+            raise forms.ValidationError("A user with that email already exist.")
+        return email1
 
-    # def clean_email2(self):
-    #     email1 = self.cleaned_data.get("email1", "")
-    #     email2 = self.cleaned_data["email2"]
-    #     if email1 != email2:
-    #         raise forms.ValidationError("The two email fields didn't match.")
-    #     return email2
-
-    # def save(self, commit=True, domain_override=None,
-    #          email_template_name='accounts/signup_email.html',
-    #          use_https=False, token_generator=default_token_generator):
-    #     user = super(UserCreationForm, self).save(commit)
-    #     user.set_password(self.cleaned_data["password"])
-    #     user.email = self.cleaned_data["email1"]
-    #     user.active = False
-    #     if commit:
-    #         random_code = User.objects.make_random_password(length=10)
-    #         user.emailcode = random_code
-    #         user.save()
-    #         #email = EmailMessage('Email Verification', 'Login to your account and verify it using this code: %s' % random_code, to=[self.cleaned_data["email1"]])
-    #         #email.send()
-    #     if not domain_override:
-    #         current_site = Site.objects.get_current()
-    #         site_name = current_site.name
-    #         domain = current_site.domain
-    #     else:
-            
-    #         ''' site_name = domain = domain_override
-    #         t = loader.get_template(email_template_name)
-    #         c = {
-    #         'email': jburevil@addu.edu.ph,
-    #         'domain': domain,
-    #         'site_name': site_name,
-    #         'uid': int_to_base36(user.id),
-    #         'user': user,
-    #         'token': token_generator.make_token(user),
-    #         'protocol': use_https and 'https' or 'http',
-    #         }
-    #     send_mail("Confirmation link sent on %s" % site_name,
-    #               t.render(Context(c)), 'peyman.gohari@gmail.com', [user.email])'''
-       # return user
-
+    def clean_email2(self):
+        email1 = self.cleaned_data.get("email1", "")
+        email2 = self.cleaned_data["email2"]
+        if email1 != email2:
+            raise forms.ValidationError("The two email fields didn't match.")
+        return email2
