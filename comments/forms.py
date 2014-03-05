@@ -6,7 +6,7 @@ class AddComment(forms.ModelForm):
 
 	class Meta:
 		model = Comment
-		exclude = ['submission', 'author', 'date', 'time', 'longitude', 'latitude', 'lasttime', 'lastdate']
+		exclude = ['submission', 'user', 'author', 'date', 'time', 'longitude', 'latitude', 'lasttime', 'lastdate']
 		widgets = {
 			'title': forms.TextInput(attrs={ 'placeholder': 'Title' }),
 			'details': forms.Textarea(attrs={ 'placeholder': 'Details'}),

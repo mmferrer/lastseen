@@ -7,6 +7,7 @@ import datetime
 # Create your models here.
 class Comment(models.Model):
 	submission = models.ForeignKey(Submission)
+	user = models.ForeignKey(UserAccount, blank = True, null = True)
 
 	author = models.CharField(max_length = 30)
 	title = models.CharField(max_length = 256)

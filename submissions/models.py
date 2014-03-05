@@ -7,7 +7,8 @@ import datetime
 class Submission(models.Model):
 	FOUND_CHOICES=(('y', 'Yes'),('n','No'))
 
-	author = models.CharField(max_length = 30)
+	user = models.ForeignKey(UserAccount)
+
 	title = models.CharField(max_length = 256)
 	details = models.TextField()
 	lastdate = models.DateField(default = date.today)

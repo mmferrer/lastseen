@@ -1,0 +1,98 @@
+<style type="text/css"> 
+  html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+  #map-canvas {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 400px;
+      height: 400px;
+  }
+</style>
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3zL-5f5AcamPPOSknl9Ly2nuSSnaGMxA&sensor=true">
+</script>
+<script type="text/javascript">
+	var locations = [];
+	var latitudes = [];
+	var longitudes = [];
+	var len = "{{ locations.count }}";
+	var start = 0;
+
+	"{% for location in locations %}"
+		locations[start] = "{{ location.address }}";
+		start = start + 1;
+	"{% endfor %}"
+
+	start = 0;
+
+	"{% for location in locations %}"
+		latitudes[start] = "{{ location.latitude }}";
+		start = start + 1;
+	"{% endfor %}"
+
+	start = 0;
+
+	"{% for location in locations %}"
+		longitudes[start] = "{{ location.longitude }}";
+		start = start + 1;
+	"{% endfor %}"
+
+	function initialize() {
+		var latLng = new google.maps.LatLng("{{ submission.latitude }}", "{{ submission.longitude }}");
+    	var mapOptions = {
+    		center: latLng,
+    		zoom: 8
+    	};
+    	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    	var markers = new Array();
+    	var marker = new google.maps.Marker({
+    		position: latLng,
+    		map: map
+    	});
+
+    	markers.push(marker);
+    	// google.maps.event.addListener(marker, 'click', (function(marker, 0) {
+    	// 	return function() {
+    	// 		infowindow.setContent("{{ submission.address }}");
+    	// 		infowindow.open(map, marker);
+    	// 	}
+    	// })(marker, 0));
+
+    	for(var i = 0; i < len; i++) {
+    		var holdLatLng = new google.maps.LatLng(latitudes[i], longitudes[i]);
+    		marker = new google.maps.Marker({
+	    		position: holdLatLng,
+	    		map: map
+	    	});
+	    	// markers.push(marker);
+	    	// google.maps.event.addListener(marker, 'click', (function(marker, i + 1) {
+	    	// 	return function() {
+	    	// 		infowindow.setContent("{{ submission.address }}");
+	    	// 		infowindow.open(map, marker);
+	    	// 	}
+	    	// })(marker, i + 1));
+    	}
+
+    	// for(var i = 0; i < len; i++) {
+    	// 	marker = new google.maps.Marker({
+    	// 		position: new google.maps.LatLng(latitudes[i], longitudes[i]),
+    	// 		map: map;
+    	// 	});
+    	// }
+	}
+</script>
+
+<body onload="initialize()">
+	<label>Starting point: {{ submission.address }}</label>
+	<ul>
+		{% for location in locations %}
+			<li>Address: {{ location.address }}</li>
+		{% endfor %}
+	</ul>
+	<div id="map-canvas" />
+</body>

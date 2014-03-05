@@ -19,9 +19,12 @@ def add(request):
 	context = {}
 	if request.method == 'POST':
 		submission_form = AddSubmission(request.POST, request.FILES)
+		current_user = request.user
+		user = UserAccount.objects.get(id = current_user.id)
+
 		if submission_form.is_valid():
 			submission = submission_form.save(commit = False)
-			submission.author = request.user
+			submission.user = user
 			submission.lastdate = date.today()
 			submission.lasttime = datetime.datetime.now()
 			submission.date = date.today()
@@ -84,7 +87,6 @@ def edit(request, form_id):
 		if submission_form.is_valid():
 			edited = submission_form.save(commit = False)
 			edited.id = submission_form.id
-			edited.author = submission_form.user.username
 			edited.time = datetime.datetime.now()
 			edited.date = date.today()
 			submission_form.save()
@@ -102,6 +104,15 @@ def delete(request, form_id):
 	submission = Submission.objects.get(pk = form_id)
    	submission.delete()
    	return redirect('/submission/all')
+
+def history(request, form_id):
+	context = {}
+	submission = Submission.objects.get(pk = form_id)
+	comments = Comment.objects.all().filter(submission = submission).order_by('-date', '-time')
+	context['submission'] = submission
+	context['locations'] = comments
+
+	return render_to_response('lastseen_history.html', context, context_instance = RequestContext(request))
 
 
 

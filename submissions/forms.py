@@ -6,7 +6,7 @@ class AddSubmission(forms.ModelForm):
 
 	class Meta:
 		model = Submission
-		exclude = ['author', 'date', 'time', 'found', 'longitude', 'latitude', 'lasttime', 'lastdate']
+		exclude = ['user', 'date', 'time', 'found', 'longitude', 'latitude', 'lasttime', 'lastdate']
 		widgets = {
 			'title': forms.TextInput(attrs={ 'placeholder': 'Title' }),
 			'details': forms.Textarea(attrs={ 'placeholder': 'Details'}),
@@ -24,7 +24,7 @@ class EditSubmission(forms.ModelForm):
 
 	class Meta:
 		model = Submission
-		exclude = ['date', 'time', 'lasttime', 'lastdate']
+		exclude = ['user', 'date', 'time', 'lasttime', 'lastdate']
 		widgets = {
 			'title': forms.TextInput(attrs={ 'placeholder': 'Title' }),
 			'details': forms.Textarea(attrs={ 'placeholder': 'Details'}),

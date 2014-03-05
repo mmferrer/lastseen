@@ -21,6 +21,7 @@ urlpatterns = patterns('',
 	url(r'^submission/add/', add),
 	url(r'^submission/edit/(\d+)/$', 'submissions.views.edit'),
 	url(r'^submission/delete/(\d+)/$','submissions.views.delete'),
+	url(r'^submission/(\d+)/history/$', 'submissions.views.history'),
 
 	url(r'^submission/(\d+)/comment/$', 'comments.views.add'),
 	url(r'^submission/(\d+)/comment/all$', 'comments.views.view_all'),

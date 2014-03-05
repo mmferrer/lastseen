@@ -11,6 +11,7 @@
 			<label>Title: {{ comment.title }}</label>
 			<label>Details: {{ comment.details }} </label>
 			<label>Location: {{ comment.latitude }}, {{ comment.longitude }} -- {{ comment.address }}</label>
+			<label>By: {{ comment.author }}</label>
 			<a href="/submission/{{ submission.id }}">View</a>
 			<a href="/submission/edit/{{ submission.id }}/">Edit</a>
 			<a href="/submission/delete/{{ submission.id }}/">Delete</a><br>

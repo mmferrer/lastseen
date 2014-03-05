@@ -19,11 +19,18 @@ def add(request, form_id):
 		comment_form = AddComment(request.POST, request.FILES)
 		if comment_form.is_valid():
 			submission = Submission.objects.get(id = form_id)
-			print submission.id
 
 			comment = comment_form.save(commit = False)
 			comment.submission = submission
-			comment.author = request.user
+
+			if request.user.id == None:
+				print 'None'
+				comment.author = 'Anonymous'
+			else:
+				user = UserAccount.objects.get(id = request.user.id)
+				comment.user = user
+				comment.author = user.username
+
 			comment.lastdate = date.today()
 			comment.lasttime = datetime.datetime.now()
 			comment.date = date.today()

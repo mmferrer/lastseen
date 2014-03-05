@@ -33,6 +33,7 @@
 
 <body onload="initialize()">
 	<h1>{{ submission.title }}</h1>
+  <label>Submitted by: {{ submission.user.username }}</label>
   <label>Comments: {{ comments.count }}</label>
   <a href="/submission/{{ submission.id }}/comment/all">View All</a>
 	<div id="map-canvas" />
